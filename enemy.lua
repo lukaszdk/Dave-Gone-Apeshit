@@ -7,23 +7,23 @@ local g = love.graphics
 Enemy = class('Enemy')
 
 function Enemy:initialize(x,y, playerBullets)	
-	enemyImage = enemyImage or g.newImage('assets/agent.png')
-	enemyDeath = enemyDeath or g.newImage('assets/agentDeath.png')
-	enemyDeath2 = enemyDeath2 or g.newImage('assets/agentDeath2.png')
-	enemyMelee = enemyMelee or g.newImage('assets/agentMelee.png')
-	bulletImage2 = bulletImage2 or g.newImage('assets/bullet2.png')
-	bloodImage = bloodImage or g.newImage('assets/blood.png')
+	enemyImage = enemyImage or Image:new('assets/agent.png')
+	enemyDeath = enemyDeath or Image:new('assets/agentDeath.png')
+	enemyDeath2 = enemyDeath2 or Image:new('assets/agentDeath2.png')
+	enemyMelee = enemyMelee or Image:new('assets/agentMelee.png')
+	bulletImage2 = bulletImage2 or Image:new('assets/bullet2.png')
+	bloodImage = bloodImage or Image:new('assets/blood.png')
 
-	muzzleImage2 = muzzleImage2 or g.newImage('assets/muzzleFire2.png') 
+	muzzleImage2 = muzzleImage2 or Image:new('assets/muzzleFire2.png') 
 	
-	self.deathAnim = newAnimation(enemyDeath, 0, 0, 200, 150, 0.20, 5)
+	self.deathAnim = newAnimation(enemyDeath:getImage(), 0, 0, 200, 150, 0.20, 5)
 	self.deathAnim:setMode('once')
 
-	self.deathAnim2 = newAnimation(enemyDeath2, 0, 0, 230, 183, 0.15, 8)
+	self.deathAnim2 = newAnimation(enemyDeath2:getImage(), 0, 0, 230, 183, 0.15, 8)
 	self.deathAnim2:setMode('once')
 
 
-	self.meleeAnim = newAnimation(enemyMelee, 0, 0, 150, 180, 0.1, 2)
+	self.meleeAnim = newAnimation(enemyMelee:getImage(), 0, 0, 150, 180, 0.1, 2)
 	
 	self.x = x + enemyImage:getWidth()/2
 	self.y = y - enemyImage:getHeight()
@@ -198,7 +198,7 @@ function Enemy:draw(x)
 			self.deathAnim2:draw(self.x, self.y-30)
 			
 			if self.killY and self.killYDur > 0 then
-				g.draw(bloodImage, self.x + 125, self.killY - bloodImage:getHeight())
+				g.draw(bloodImage:getImage(), self.x + 125, self.killY - bloodImage:getHeight())
 			end
 			
 		end
@@ -206,7 +206,7 @@ function Enemy:draw(x)
 		if self.melee then
 			self.meleeAnim:draw(self.x, self.y - 30)
 		else
-			g.draw(enemyImage, self.x, self.y)
+			g.draw(enemyImage:getImage(), self.x, self.y)
 		end
 	end
 			
@@ -215,13 +215,13 @@ function Enemy:draw(x)
 	while i < self.bullets:size() do
 		local bullet = self.bullets:getAt(i+1)
 		--g.rectangle("fill", bullet.x, bullet.y, 12, 4)
-		g.draw(bulletImage2, bullet.x, bullet.y)
+		g.draw(bulletImage2:getImage(), bullet.x, bullet.y)
 		i = i + 1
 	end
 	
 	if self.muzzle > 0 then
 		g.setColor(255, 255, 255, 255)
-		g.draw(muzzleImage2, self.x - 40, self.y + 20)
+		g.draw(muzzleImage2:getImage(), self.x - 40, self.y + 20)
 	
 		self.muzzle = self.muzzle - 1
 	end

@@ -41,8 +41,8 @@ function Background:draw()
 
 	local y = self.y - self.image:getHeight()
 	
-	g.draw(self.image, math.floor(self.bg1X), y)
-	g.draw(self.image, math.floor(self.bg2X), y)
+	g.draw(self.image:getImage(), math.floor(self.bg1X), y)
+	g.draw(self.image:getImage(), math.floor(self.bg2X), y)
 	
 	g.setColor(unpack(self.color))
 	

@@ -1,5 +1,6 @@
 require 'middleclass.lua'
 require 'enemy.lua'
+require 'image.lua'
 
 local g = love.graphics
 local a = love.audio
@@ -7,11 +8,11 @@ local a = love.audio
 Building = class('Building')
 
 function Building:initialize(player, x)
-	platformImage = platformImage or g.newImage('assets/platform.png')
-	holeImage = holeImage or g.newImage('assets/hole.png')
-	holeFrameImage = holeFrameImage or g.newImage('assets/hole_frame.png')
-	windowShatterImage = windowShatterImage or g.newImage('assets/window_shatter.png')
-	windowShatterImage2 = windowShatterImage2 or g.newImage('assets/window_shatter02.png')
+	platformImage = platformImage or Image:new('assets/platform.png')
+	holeImage = holeImage or Image:new('assets/hole.png')
+	holeFrameImage = holeFrameImage or Image:new('assets/hole_frame.png')
+	windowShatterImage = windowShatterImage or Image:new('assets/window_shatter.png')
+	windowShatterImage2 = windowShatterImage2 or Image:new('assets/window_shatter02.png')
 	
 	holeBeginQuad = holeBeginQuad or g.newQuad(0,0, 80, holeImage:getHeight(), holeImage:getWidth(), holeImage:getHeight()  ) 
 	holeMiddleQuad = holeMiddleQuad or g.newQuad(80,0, 40, holeImage:getHeight(), holeImage:getWidth(), holeImage:getHeight()  ) 
@@ -21,17 +22,17 @@ function Building:initialize(player, x)
 	platformEndQuad = platformEndQuad or g.newQuad(platformImage:getWidth()-50,0, 50, platformImage:getHeight(), platformImage:getWidth(), platformImage:getHeight()  ) 
 	platformMiddleQuad = platformMiddleQuad or g.newQuad(50,0, 150, platformImage:getHeight(), platformImage:getWidth(), platformImage:getHeight()  ) 
 
-	wallBegin = wallBegin or g.newImage('assets/wallSegment_start.png')
-	wallMiddle = wallMiddle or g.newImage('assets/wallSegment_middle.png')
-	wallEnd = wallEnd or g.newImage('assets/wallSegment_end.png')
+	wallBegin = wallBegin or Image:new('assets/wallSegment_start.png')
+	wallMiddle = wallMiddle or Image:new('assets/wallSegment_middle.png')
+	wallEnd = wallEnd or Image:new('assets/wallSegment_end.png')
 
 	wallBeginQuad = wallBeginQuad or g.newQuad(0, 0, 35, wallBegin:getHeight(), wallBegin:getWidth(), wallBegin:getHeight())
 	wallEndQuad = wallBeginQuad or g.newQuad(0, 0, 30, wallEnd:getHeight(), wallEnd:getWidth(), wallEnd:getHeight())
 
-	self.shatterAnim = newAnimation(windowShatterImage, 0, 0, 565, 720, 0.08, 6)
+	self.shatterAnim = newAnimation(windowShatterImage:getImage(), 0, 0, 565, 720, 0.08, 6)
 	self.shatterAnim:setMode('once')
 	
-	self.shatterAnim2 = newAnimation(windowShatterImage2, 0, 0, 565, 720, 0.08, 6)
+	self.shatterAnim2 = newAnimation(windowShatterImage2:getImage(), 0, 0, 565, 720, 0.08, 6)
 	self.shatterAnim2:setMode('once')
 	
 	if sound then
@@ -252,14 +253,14 @@ function Building:draw()
 	
 	g.setColor(255,255,255,255)
 	
-	g.draw(wallBegin, self.x, 0)
+	g.draw(wallBegin:getImage(), self.x, 0)
 
 	for i = 0, self.middleWalls-1 do
-		g.draw(wallMiddle, self.x + wallBegin:getWidth() + i * wallMiddle:getWidth(), 0)
+		g.draw(wallMiddle:getImage(), self.x + wallBegin:getWidth() + i * wallMiddle:getWidth(), 0)
 	
 	end
 
-	g.draw(wallEnd, self.x + self.w - wallEnd:getWidth(), 0)
+	g.draw(wallEnd:getImage(), self.x + self.w - wallEnd:getWidth(), 0)
 
 	if self.shatterAnim:getCurrentFrame() < 6 then
 		self.shatterAnim:draw(self.x + self.w - wallEnd:getWidth(), 0)
@@ -285,7 +286,7 @@ function Building:draw()
 	for i, hole in ipairs(self.holes) do 
 		local x, y, w, h = self.x + hole.x,  hole.y - 40, hole.w + 25, 70
 	
-		self:drawHole(holeImage, x,y,w,h)
+		self:drawHole(holeImage:getImage(), x,y,w,h)
 	end
 
 	for i, enemy in ipairs(self.enemies) do
@@ -296,14 +297,14 @@ end
 
 function Building:postDraw()
 	g.setColor(255, 255, 255, 255)
-	g.drawq(wallBegin, wallBeginQuad, self.x, 0)
-	g.drawq(wallEnd, wallEndQuad, self.x + self.w - wallEnd:getWidth(), 0)
+	g.drawq(wallBegin:getImage(), wallBeginQuad, self.x, 0)
+	g.drawq(wallEnd:getImage(), wallEndQuad, self.x + self.w - wallEnd:getWidth(), 0)
 	
 	if player.inHole then	
 		for i, hole in ipairs(self.holes) do 
 			local x, y, w, h = self.x + hole.x,  hole.y - 40, hole.w + 25, 70
 	
-			self:drawHole(holeFrameImage, x,y,w,h)
+			self:drawHole(holeFrameImage:getImage(), x,y,w,h)
 		end
 	end
 end
@@ -331,10 +332,10 @@ function Building:drawPlatform(x,y,w,h, offset)
 	g.polygon("fill", vertices)
 
 	g.setColor(255,255,255,255)
-	g.drawq(platformImage, platformBeginQuad, x, y - platformImage:getHeight() )
+	g.drawq(platformImage:getImage(), platformBeginQuad, x, y - platformImage:getHeight() )
 
 	local scaleX = (w-50)/150
 
-	g.drawq(platformImage, platformEndQuad, x + w, y - platformImage:getHeight() )
-	g.drawq(platformImage, platformMiddleQuad, x + 50, y - platformImage:getHeight(), 0, scaleX, 1 )
+	g.drawq(platformImage:getImage(), platformEndQuad, x + w, y - platformImage:getHeight() )
+	g.drawq(platformImage:getImage(), platformMiddleQuad, x + 50, y - platformImage:getHeight(), 0, scaleX, 1 )
 end

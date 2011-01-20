@@ -1,6 +1,7 @@
 require 'player.lua'
 require 'building.lua'
 require 'background.lua'
+require 'image.lua'
 
 local g = love.graphics
 local a = love.audio
@@ -29,11 +30,11 @@ function game.load()
 	buildingA:setOther(buildingB)
 	buildingB:setOther(buildingA)
 	
-	bgSky = bgSky or g.newImage('assets/bg_gradient.jpg')
+	bgSky = bgSky or Image:new('assets/bg_gradient.jpg')
 	bgSkyQuad = bgSkyQuad or g.newQuad(0,0, g.getWidth(), g.getHeight(), bgSky:getWidth(), bgSky:getHeight())
 	
-	bgImage1 = bgImage1 or g.newImage("assets/bg01_y=525.png")
-	bgImage2 = bgImage2 or g.newImage("assets/bg02_y=425.png")
+	bgImage1 = bgImage1 or Image:new("assets/bg01_y=525.png")
+	bgImage2 = bgImage2 or Image:new("assets/bg02_y=425.png")
 	
 	
 	local bg1 = Background:new(player, bgImage1, 525, { 123, 122, 122, 255}, 0.2, 0.1)
@@ -92,7 +93,7 @@ end
 
 function game.draw()
 	
-	g.drawq(bgSky, bgSkyQuad, 0, 0)
+	g.drawq(bgSky:getImage(), bgSkyQuad, 0, 0)
 	
 	for i,obj in ipairs(gameObjects) do
 		obj:draw()	

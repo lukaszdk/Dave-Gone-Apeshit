@@ -15,12 +15,12 @@ function Player:initialize(x,y,speed)
 	
 	debugFont = debugFont or g.newFont(12)
 	
-	playerImage = playerImage or g.newImage("assets/player.png")
-	runImage = runImage or g.newImage('assets/playerRun.png')
-	jumpImage = jumpImage or g.newImage('assets/playerJump.png')
-	dodgeImage = dodgeImage or g.newImage('assets/playerSlide.png')
-	deathImage = deathImage or g.newImage('assets/playerDeath.png')
-	muzzleImage3 = muzzleImage3 or g.newImage('assets/muzzleFire.png')
+	playerImage = playerImage or Image:new("assets/player.png")
+	runImage = runImage or Image:new('assets/playerRun.png')
+	jumpImage = jumpImage or Image:new('assets/playerJump.png')
+	dodgeImage = dodgeImage or Image:new('assets/playerSlide.png')
+	deathImage = deathImage or Image:new('assets/playerDeath.png')
+	muzzleImage3 = muzzleImage3 or Image:new('assets/muzzleFire.png')
 	
 	self.image = playerImage
 	self.runImage = runImage
@@ -29,19 +29,19 @@ function Player:initialize(x,y,speed)
 	self.deathImage = deathImage
 	self.muzzleImage = muzzleImage3
 
-	playerMeleeImage = playerMeleeImage or g.newImage('assets/playerMelee.png')
+	playerMeleeImage = playerMeleeImage or Image:new('assets/playerMelee.png')
 
-	self.meleeBeginAnim = newAnimation(playerMeleeImage, 300, 0, 150, 150, 0.10, 2)
+	self.meleeBeginAnim = newAnimation(playerMeleeImage:getImage(), 300, 0, 150, 150, 0.10, 2)
 --	self.meleeBeginAnim:setMode('once')
 
 	self.muzzle = 0
 	
-	bulletImage = bulletImage or g.newImage('assets/bullet.png')
+	bulletImage = bulletImage or Image:new('assets/bullet.png')
 
-	self.runAnim = newAnimation(self.runImage, 0, 0, 150, 150, 0.15, 4)
-	self.jumpAnim = newAnimation(self.jumpImage, 0, 0, 150, 150, 0.15, 4)
-	self.dodgeAnim = newAnimation(self.dodgeImage, 0, 0, 150, 150, 0.10, 2)
-	self.deathAnim = newAnimation(self.deathImage, 0, 0, 150, 150, 0.15, 4)
+	self.runAnim = newAnimation(self.runImage:getImage(), 0, 0, 150, 150, 0.15, 4)
+	self.jumpAnim = newAnimation(self.jumpImage:getImage(), 0, 0, 150, 150, 0.15, 4)
+	self.dodgeAnim = newAnimation(self.dodgeImage:getImage(), 0, 0, 150, 150, 0.10, 2)
+	self.deathAnim = newAnimation(self.deathImage:getImage(), 0, 0, 150, 150, 0.15, 4)
 
 	self.deathAnim:setMode('once')
 	self.jumpAnim:setMode('once')
@@ -438,14 +438,14 @@ function Player:draw()
 	
 	while i < self.bullets:size() do
 		local bullet = self.bullets:getAt(i+1)
-		g.draw(bulletImage, bullet.x, bullet.y)	
+		g.draw(bulletImage:getImage(), bullet.x, bullet.y)	
 		i = i + 1
 	end
 	
 	if self.muzzle > 0 then
 		g.setColor(255, 255, 255, 255)
 	
-		g.draw(self.muzzleImage, self.x + 137, self.y - 110)
+		g.draw(self.muzzleImage:getImage(), self.x + 137, self.y - 110)
 	
 		self.muzzle = self.muzzle - 1
 	end
