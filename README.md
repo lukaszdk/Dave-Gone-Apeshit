@@ -16,7 +16,7 @@ Graphics & Design: Matias Billeschou
 
 The font used is Alien Encounters by ShyWedge. 
 
-Soundtrack is "Betamax Defender and the Vinyl Kid" by C.P.Bryan from [freesoundtrackmusic](freesoundtrackmusic.com)
+Soundtrack is "Betamax Defender and the Vinyl Kid" by C.P.Bryan from [Free Soundtrack Music](http://freesoundtrackmusic.com)
 
 Screenshots
 -----------
