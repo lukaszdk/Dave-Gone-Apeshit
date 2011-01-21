@@ -103,7 +103,6 @@ function game.draw()
 		if obj.postDraw then obj:postDraw()	end
 	end
 
-
 	g.setColor(255,255,255, 255)
 
 --	g.print("KILLS: " .. kills, g.getWidth() - 200, 10)

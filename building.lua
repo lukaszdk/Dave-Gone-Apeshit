@@ -14,20 +14,21 @@ function Building:initialize(player, x)
 	windowShatterImage = windowShatterImage or Image:new('assets/window_shatter.png')
 	windowShatterImage2 = windowShatterImage2 or Image:new('assets/window_shatter02.png')
 	
-	holeBeginQuad = holeBeginQuad or g.newQuad(0,0, 80, holeImage:getHeight(), holeImage:getWidth(), holeImage:getHeight()  ) 
-	holeMiddleQuad = holeMiddleQuad or g.newQuad(80,0, 40, holeImage:getHeight(), holeImage:getWidth(), holeImage:getHeight()  ) 
-	holeEndQuad = holeEndQuad or g.newQuad(holeImage:getWidth()-80, 0, 80, holeImage:getHeight(), holeImage:getWidth(), holeImage:getHeight()  ) 
+	holeBeginQuad = holeBeginQuad or g.newQuad(0,0, 80, holeImage:getHeight(), holeImage:getTextureWidth(), holeImage:getTextureHeight()  ) 
+	holeMiddleQuad = holeMiddleQuad or g.newQuad(80,0, 40, holeImage:getHeight(), holeImage:getTextureWidth(), holeImage:getTextureHeight()  ) 
+	holeEndQuad = holeEndQuad or g.newQuad(holeImage:getWidth()-80, 0, 80, holeImage:getHeight(), holeImage:getTextureWidth(), holeImage:getTextureHeight()  ) 
 	
-	platformBeginQuad = platformBeginQuad or g.newQuad(0,0, 50, platformImage:getHeight(), platformImage:getWidth(), platformImage:getHeight()  ) 
-	platformEndQuad = platformEndQuad or g.newQuad(platformImage:getWidth()-50,0, 50, platformImage:getHeight(), platformImage:getWidth(), platformImage:getHeight()  ) 
-	platformMiddleQuad = platformMiddleQuad or g.newQuad(50,0, 150, platformImage:getHeight(), platformImage:getWidth(), platformImage:getHeight()  ) 
+	platformBeginQuad = platformBeginQuad or g.newQuad(0,0, 50, platformImage:getHeight(), platformImage:getTextureWidth(), platformImage:getHeight()  ) 
+	platformEndQuad = platformEndQuad or g.newQuad(platformImage:getWidth()-50,0, 50, platformImage:getHeight(), platformImage:getTextureWidth(), platformImage:getHeight()  ) 
+	
+	platformMiddleQuad = platformMiddleQuad or g.newQuad(50,0, 20, platformImage:getHeight(), platformImage:getTextureWidth(), platformImage:getHeight()  ) 
 
 	wallBegin = wallBegin or Image:new('assets/wallSegment_start.png')
 	wallMiddle = wallMiddle or Image:new('assets/wallSegment_middle.png')
 	wallEnd = wallEnd or Image:new('assets/wallSegment_end.png')
 
-	wallBeginQuad = wallBeginQuad or g.newQuad(0, 0, 35, wallBegin:getHeight(), wallBegin:getWidth(), wallBegin:getHeight())
-	wallEndQuad = wallBeginQuad or g.newQuad(0, 0, 30, wallEnd:getHeight(), wallEnd:getWidth(), wallEnd:getHeight())
+	wallBeginQuad = wallBeginQuad or g.newQuad(0, 0, 35, wallBegin:getHeight(), wallBegin:getTextureWidth(), wallBegin:getTextureHeight())
+	wallEndQuad = wallBeginQuad or g.newQuad(0, 0, 30, wallEnd:getHeight(), wallEnd:getTextureWidth(), wallEnd:getTextureHeight())
 
 	self.shatterAnim = newAnimation(windowShatterImage:getImage(), 0, 0, 565, 720, 0.08, 6)
 	self.shatterAnim:setMode('once')
@@ -325,16 +326,18 @@ function Building:drawHole(image, x,y,w,h)
 end
 
 function Building:drawPlatform(x,y,w,h, offset)
-	y = y + h / 2
+	y = y +  h / 2
 	x = x - offset / 2
 
-	local vertices = { x, y, x + offset, y - h, x + offset + w, y - h, x + w, y}
-	g.polygon("fill", vertices)
+--	local vertices = { x, y, x + offset, y - h, x + offset + w, y - h, x + w, y}
+--	g.polygon("fill", vertices)
+	
+	y = y + 25
 
 	g.setColor(255,255,255,255)
 	g.drawq(platformImage:getImage(), platformBeginQuad, x, y - platformImage:getHeight() )
 
-	local scaleX = (w-50)/150
+	local scaleX = (w-50)/20
 
 	g.drawq(platformImage:getImage(), platformEndQuad, x + w, y - platformImage:getHeight() )
 	g.drawq(platformImage:getImage(), platformMiddleQuad, x + 50, y - platformImage:getHeight(), 0, scaleX, 1 )

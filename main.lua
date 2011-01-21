@@ -5,7 +5,7 @@ local g = love.graphics
 local m = love.mouse
 
 state = menu
-sound = true
+sound = false
 
 function love.load()
 	love.filesystem.setIdentity("davegoneapeshit")
