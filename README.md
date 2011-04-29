@@ -1,7 +1,7 @@
 Dave Gone Apeshit
 =================
 
-A 2D platform game I made with Matias Billeschou in one weekend using the [LÖVE](http://love2d.org) framework.
+A 2D platform game I made with Matias Billeschou in one weekend using the [LÖVE](http://love2d.org) framework. [Video](http://www.youtube.com/watch?v=W36heR9GUMk)
 
 The game crashes when running with LÖVE 0.7.0 due to a [sound bug](https://bitbucket.org/rude/love/issue/169/crash-when-playing-sound-on-mac-os-x). To work around this crash, you can disable the sound by setting the global variable sound in main.lua to false.
 
