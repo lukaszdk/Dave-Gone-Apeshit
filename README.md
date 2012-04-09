@@ -21,6 +21,6 @@ Soundtrack is "Betamax Defender and the Vinyl Kid" by C.P.Bryan from [Free Sound
 Screenshots
 -----------
 
-<img src="https://github.com/lukaszbruun/Dave-Gone-Apeshit/raw/master/screenshots/menu.png">
-<img src="https://github.com/lukaszbruun/Dave-Gone-Apeshit/raw/master/screenshots/instructions.png">
-<img src="https://github.com/lukaszbruun/Dave-Gone-Apeshit/raw/master/screenshots/ingame.png">
+<img src="https://github.com/lukaszpaczkowski/Dave-Gone-Apeshit/raw/master/screenshots/menu.png">
+<img src="https://github.com/lukaszpaczkowski/Dave-Gone-Apeshit/raw/master/screenshots/instructions.png">
+<img src="https://github.com/lukaszpaczkowski/Dave-Gone-Apeshit/raw/master/screenshots/ingame.png">
