@@ -10,7 +10,7 @@ All the source code and graphical assets produced by Lukasz Bruun and Matias Bil
 Credits
 -------
 
-Code: Lukasz Bruun
+Code: Lukasz
 
 Graphics & Design: Matias Billeschou
 
@@ -21,6 +21,6 @@ Soundtrack is "Betamax Defender and the Vinyl Kid" by C.P.Bryan from [Free Sound
 Screenshots
 -----------
 
-<img src="https://github.com/lukaszpaczkowski/Dave-Gone-Apeshit/raw/master/screenshots/menu.png">
-<img src="https://github.com/lukaszpaczkowski/Dave-Gone-Apeshit/raw/master/screenshots/instructions.png">
-<img src="https://github.com/lukaszpaczkowski/Dave-Gone-Apeshit/raw/master/screenshots/ingame.png">
+<img src="https://github.com/lukaszdk/Dave-Gone-Apeshit/raw/master/screenshots/menu.png">
+<img src="https://github.com/lukaszdk/Dave-Gone-Apeshit/raw/master/screenshots/instructions.png">
+<img src="https://github.com/lukaszdk/Dave-Gone-Apeshit/raw/master/screenshots/ingame.png">
