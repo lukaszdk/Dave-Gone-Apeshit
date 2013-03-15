@@ -5,7 +5,7 @@ A 2D platform game I made with Matias Billeschou in one weekend using the [LÖVE
 
 The game crashes when running with LÖVE 0.7.0 due to a [sound bug](https://bitbucket.org/rude/love/issue/169/crash-when-playing-sound-on-mac-os-x). To work around this crash, you can disable the sound by setting the global variable sound in main.lua to false.
 
-All the source code and graphical assets produced by Lukasz Bruun and Matias Billeschou are released in public domain, you are free to use reuse them in any form for any purpose.
+All the source code and graphical assets produced by Lukasz and Matias Billeschou are released in public domain, you are free to use reuse them in any form for any purpose.
 
 Credits
 -------
